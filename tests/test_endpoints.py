@@ -2,6 +2,8 @@ from json import JSONDecodeError
 from unittest import TestCase
 from unittest.mock import patch
 
+from requests import Response
+
 from myob import Myob
 from myob.credentials import PartnerCredentials
 from myob.exceptions import (
@@ -1290,6 +1292,22 @@ class EndpointTests(TestCase):
         self.assertExceptionHandled(
             403, {"Errors": [{"Name": "RateLimitError"}]}, MyobRateLimitExceeded
         )
+        self.assertExceptionHandled(403, {"randomKey": True}, MyobForbidden)
         self.assertExceptionHandled(404, {}, MyobNotFound)
         self.assertExceptionHandled(504, {}, MyobGatewayTimeout)
         self.assertExceptionHandled(418, {}, MyobExceptionUnknown)
+
+    @patch("myob.managers.requests.request")
+    def test_forbidden_message_includes_body(self, mock_request):
+        response = Response()
+        response.status_code = 403
+        response.reason = "Forbidden"
+        response._content = b'{"randomKey": true}'
+        response.headers["content-type"] = "application/json"
+        mock_request.return_value = response
+
+        with self.assertRaises(MyobForbidden) as cm:
+            self.myob.info()
+
+        self.assertIn('{"randomKey": true}', str(cm.exception))
+        self.assertEqual(cm.exception.problem, '{"randomKey": true}')
