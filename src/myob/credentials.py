@@ -43,7 +43,7 @@ class PartnerCredentials:
             scopes = quote(" ".join(scope), safe="")
         else:
              scopes = "CompanyFile"
-        self.url = url + "&scope=" + scopes
+        self.url = url + "&prompt=consent&scope=" + scopes
 
 
     # TODO: Add `verify` kwarg here, which will quickly throw the provided credentials at a
