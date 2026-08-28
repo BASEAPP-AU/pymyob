@@ -4,9 +4,9 @@ from unittest.mock import patch
 
 from requests import Response
 
-from myob import Myob
-from myob.credentials import PartnerCredentials
-from myob.exceptions import (
+from pymyob.src.myob import Myob
+from pymyob.src.myob.credentials import PartnerCredentials
+from pymyob.src.myob.exceptions import (
     MyobBadRequest,
     MyobExceptionUnknown,
     MyobForbidden,

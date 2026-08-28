@@ -1,9 +1,9 @@
 from datetime import date, datetime
 from unittest import TestCase
 
-from myob.constants import DEFAULT_PAGE_SIZE
-from myob.credentials import PartnerCredentials
-from myob.managers import Manager
+from pymyob.src.myob.constants import DEFAULT_PAGE_SIZE
+from pymyob.src.myob.credentials import PartnerCredentials
+from pymyob.src.myob.managers import Manager
 
 
 class QueryParamTests(TestCase):
