@@ -62,6 +62,7 @@ ENDPOINTS = {
             (ALL, "", "sale invoice type"),
             (CRUD, "Item/", "item type sale invoice"),
             (CRUD, "Service/", "service type sale invoice"),
+            (CRUD, 'Professional/', 'professional type sale invoice'),
         ],
     },
     "Sale/Order/": {
@@ -136,7 +137,9 @@ ENDPOINTS = {
         "name": "purchase_orders",
         "methods": [
             (ALL, "", "purchase order type"),
-            (CRUD, "Item/", "item type purchase order"),
+            (CRUD, 'Item/', 'item type purchase order'),
+            (CRUD, 'Service/', 'service type purchase order'),
+            (CRUD, 'Miscellaneous/', 'miscellaneous type purchase order'),
         ],
     },
     "Purchase/SupplierPayment/": {
@@ -147,7 +150,10 @@ ENDPOINTS = {
     },
     "Company/": {
         "name": "company",
-        "methods": [(ALL, "Preferences/", "company data file preference")],
+        "methods": [
+            (ALL, 'Preferences/', 'company data file preference'),
+            (ALL, 'FormTemplate/', 'custom form template details'),
+        ],
     },
 }
 
