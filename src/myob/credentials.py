@@ -40,7 +40,7 @@ class PartnerCredentials:
         self._oauth = OAuth2Session(consumer_key, redirect_uri=callback_uri)
         url, _ = self._oauth.authorization_url(MYOB_PARTNER_BASE_URL + AUTHORIZE_URL, state=state)
         if scope:
-            scopes = quote(" ".join(" "), safe="")
+            scopes = quote(" ".join(scope), safe="")
         else:
              scopes = "CompanyFile"
         self.url = url + "&scope=" + scopes
