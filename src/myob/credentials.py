@@ -39,6 +39,7 @@ class PartnerCredentials:
 
         self._oauth = OAuth2Session(consumer_key, redirect_uri=callback_uri)
         url, _ = self._oauth.authorization_url(MYOB_PARTNER_BASE_URL + AUTHORIZE_URL, state=state)
+        self.scope = scope
         if scope:
             scopes = quote(" ".join(scope), safe="")
         else:
@@ -67,6 +68,7 @@ class PartnerCredentials:
                 "oauth_token",
                 "refresh_token",
                 "oauth_expires_at",
+                "scope"
             )
             if getattr(self, attr) is not None
         }
