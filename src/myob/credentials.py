@@ -2,7 +2,7 @@ import base64
 from datetime import datetime, timedelta
 from typing import Any
 from urllib.parse import quote
-from requests_oauthlib import OAuth2Session
+from requests_oauthlib import OAuth2Session  # type: ignore
 
 from .constants import ACCESS_TOKEN_URL, AUTHORIZE_URL, MYOB_PARTNER_BASE_URL
 

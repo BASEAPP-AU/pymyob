@@ -1,3 +1,4 @@
+# type: ignore
 import re
 import requests
 from datetime import date
